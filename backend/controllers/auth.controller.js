@@ -1,4 +1,3 @@
-import express from 'express';
 import { redis } from '../lib/redis.js';
 import User from '../models/user.model.js';
 import jwt from 'jsonwebtoken';
@@ -27,7 +26,7 @@ const storeRefreshToken = async (userId, refreshToken) => {
 const setCookies = (res, accessToken, refreshToken) => {
 
    // Set the access token and refresh token as cookies client side
-   res.cookie('acessToken', accessToken, {
+   res.cookie('accessToken', accessToken, {
       httpOnly: true, // Prevent XSS attacks
       secure: process.env.NODE_ENV === 'production', // Only send cookie over HTTPS
       sameSite: 'strict', // Prevent CSRF attacks
@@ -81,9 +80,12 @@ export const signup = async (req, res) => {
 };
 
 export const login = async (req, res) => {
+
    try {
       const { email, password } = req.body;
       const user = await User.findOne({ email });
+      
+      // comparePassword is a method defined in the user model
       if (user && (await user.comparePassword(password))) {
          const { accessToken, refreshToken } = generateTokens(user._id);
 
@@ -125,8 +127,10 @@ export const logout = async (req, res) => {
 
 // This will refresh the access token
 export const refreshToken = async (req, res) => {
+
    try {
       const refreshToken = req.cookies.refreshToken;
+
       if (!refreshToken) {
          return res.status(401).json({ message: "No refresh token provided" });
       }
@@ -153,4 +157,7 @@ export const refreshToken = async (req, res) => {
       res.status(500).json({ message: "Server error", error: error.message});
    }
 };
-   
+
+
+// TO DO: IMPLEMENT GET PROFILE ENDPOINT
+// export const getProfile = async (req, res) => {};
