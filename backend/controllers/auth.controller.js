@@ -74,7 +74,7 @@ export const signup = async (req, res) => {
       });
 
    } catch (error) {
-      console.log("Error in signup controller: ", error.message);
+      console.error("Error in signup controller: ", error.message);
       res.status(500).json({message: "Server error", error: error.message});
    }
 };
@@ -102,7 +102,7 @@ export const login = async (req, res) => {
          res.status(401).json({ message: "Invalid email or password" });
       }
    } catch (error) {
-      console.log("Error in login controller: ", error.message);
+      console.error("Error in login controller: ", error.message);
       res.status(500).json({ message: "Server error", error: error.message});
    }
 };
@@ -120,7 +120,7 @@ export const logout = async (req, res) => {
       res.clearCookie('refreshToken');
       res.json({ message: 'Logged out successfully' });
    } catch (error) {
-      console.log("Error in logout controller: ", error.message);
+      console.error("Error in logout controller: ", error.message);
       res.status(500).json({ message: "Server error", error: error.message});
    }
 };
@@ -153,11 +153,19 @@ export const refreshToken = async (req, res) => {
 
        res.json({ message: "Access token refreshed successfully" })
    } catch (error) {
-      console.log("Error in refresh token controller: ", error.message);
+      console.error("Error in refresh token controller: ", error.message);
       res.status(500).json({ message: "Server error", error: error.message});
    }
 };
 
 
-// TO DO: IMPLEMENT GET PROFILE ENDPOINT
-// export const getProfile = async (req, res) => {};
+export const getProfile = async (req, res) => {
+
+   try {
+     const user =  res.json(req.user);
+
+   } catch (error) {
+      console.error("Error in getProfile controller: ", error.message);
+      res.status(500).json({ message: "Server error", error: error.message});
+   }
+};

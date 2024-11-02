@@ -7,7 +7,7 @@ export const getCoupon = async (req, res) => {
       res.json(coupon || null);
 
    } catch (error) {
-      console.log("Error in getCoupon controller: ", error);
+      console.error("Error in getCoupon controller: ", error);
       res.status(500).json({ message: "Internal server error", error: error.message });
    }
 };
@@ -33,7 +33,7 @@ export const validateCoupon = async (req, res) => {
          discountPercentage: coupon.discountPercentage
       });
    } catch (error) {
-      console.log("Error in validateCoupon controller: ", error);
+      console.error("Error in validateCoupon controller: ", error);
       res.status(500).json({ message: "Internal server error", error: error.message });
    }
 }
