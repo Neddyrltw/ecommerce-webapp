@@ -8,7 +8,6 @@ const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { login, loading } = useUserStore();
-  console.log(email, password);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
