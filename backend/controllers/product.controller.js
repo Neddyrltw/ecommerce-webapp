@@ -44,28 +44,28 @@ export const getFeaturedProducts = async (req, res) => {
 };
 
 export const createProduct = async (req, res) => {
-   try {
-      const { name, description, price, image, category} = req.body;
+	try {
+		const { name, description, price, image, category } = req.body;
 
-      let cloudinaryResponse = null;
+		let cloudinaryResponse = null;
 
-      if (image) {
-         cloudinaryResponse = await cloudinary.uploader.upload(image, {folder: 'products'});
-      }
+		if (image) {
+			cloudinaryResponse = await cloudinary.uploader.upload(image, { folder: "products" });
+		}
 
-      const product = await Product.create({
-         name,
-         description,
-         price,
-         image: cloudinaryResponse?.secure_url ? cloudinaryResponse.secure_url : '',
-         category
-      });
+		const product = await Product.create({
+			name,
+			description,
+			price,
+			image: cloudinaryResponse?.secure_url ? cloudinaryResponse.secure_url : "",
+			category,
+		});
 
-      res.status(201).json(product);
-   } catch (error) {
-      console.error("Error in createProduct controller: ", error.message);
-      res.status(500).json({ message: "Internal server error", error: error.message });
-   }
+		res.status(201).json(product);
+	} catch (error) {
+		console.log("Error in createProduct controller", error.message);
+		res.status(500).json({ message: "Server error", error: error.message });
+	}
 };
 
 export const deleteProduct = async (req, res) => {

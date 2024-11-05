@@ -162,7 +162,7 @@ export const refreshToken = async (req, res) => {
 export const getProfile = async (req, res) => {
 
    try {
-     const user =  res.json(req.user);
+     res.json(req.user);
 
    } catch (error) {
       console.error("Error in getProfile controller: ", error.message);
