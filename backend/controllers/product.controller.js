@@ -6,7 +6,7 @@ import cloudinary from '../lib/cloudinary.js';
 export const getAllProducts = async (req, res) => {
 
    try {
-      const products = await Products.find({}); 
+      const products = await Product.find({}); 
 
       res.json({ products });
 
