@@ -1,5 +1,5 @@
 # ecommerce-webapp
-Basic ecommerce site utilizing MERN stack with redis &amp; stripe
+Basic ecommerce site utilizing MERN stack with redis and stripe
 
 
 
