@@ -21,14 +21,14 @@ export const getFeaturedProducts = async (req, res) => {
    try {
 
       // check if featured products are already in redis
-      let featuredProducts = await redis.get('featuerd_products');
+      let featuredProducts = await redis.get('featured_products');
       if (featuredProducts) {
          return res.json(JSON.parse(featuredProducts));
       }
 
       // if not in redis, fetch from db
       // .lean() returns a plain object instead of a mongoose document, which is more efficient for JSON serialization
-      featuredProducts = await Product.find({ featured: true }).lean();
+      featuredProducts = await Product.find({ isFeatured: true }).lean();
 
       if (!featuredProducts) {
       return res.status(404).json({ message: "No featured products found" });

@@ -33,17 +33,17 @@ const AdminPage = () => {
         </motion.h1>
 
         <div className='flex justify-center mb-8'>
-          {tabs.map((tab) => (
+          {tabs.map((Tab) => (
             <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
+              key={Tab.id}
+              onClick={() => setActiveTab(Tab.id)}
               className={`flex items-center px-4 py-2 mx-2 rounded-md transition-colors duration-200 ${
-                activeTab === tab.id
+                activeTab === Tab.id
                   ? 'bg-emerald-600 text-white'
                   : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
               }`}>
-              <tab.icon className='mr-2 h-5 w-5' />
-              {tab.label}
+              <Tab.icon className='mr-2 h-5 w-5' />
+              {Tab.label}
             </button>
           ))}
         </div>
