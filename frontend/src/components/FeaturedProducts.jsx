@@ -48,12 +48,14 @@ const FeaturedProducts = ({ featuredProducts }) => {
                   key={product._id}
                   className='w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 flex-shrink-0 px-2'>
                   <div className='bg-white bg-opacity-10 backdrop-blur-sm rounded-lg shadow-lg overflow-hidden h-full transition-all duration-300 hover:shadow-xl border border-emerald-500/30'>
-                    <div className='overflow-hidden'>
+                    <div className='relative h-48 w-full overflow-hidden'>
                       <img
                         src={product.image}
                         alt={product.name}
-                        className='w-full h-48 object-cover transition-transform duration-300 ease-in-out hover:scale-110'
+                        className='w-full h-full object-cover transition-transform duration-300 ease-in-out hover:scale-110 z-0'
                       />
+                      {/* Temporarily increase opacity to bg-opacity-50 */}
+                      <div className='absolute inset-0 bg-black bg-opacity-50 z-10 pointer-events-none' />
                     </div>
                     <div className='p-4'>
                       <h3 className='text-lg font-semibold mb-2 text-white'>{product.name}</h3>
